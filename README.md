@@ -28,4 +28,4 @@ climate:
 ```
 
 ### Example
-[ac_study_room.yaml](https://github.com/js4jiang5/Hitachi_AC/blob/main/ac-study_room.yaml)
+[ac_study_room.yaml](https://github.com/js4jiang5/Hitachi_AC/blob/main/ac-study-room.yaml)
