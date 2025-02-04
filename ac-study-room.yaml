@@ -7,6 +7,9 @@ esp8266:
 
 # Enable logging
 logger:
+  # level: VERBOSE
+  # logs:
+  #   climate.hitachi_ac: DEBUG
 
 # Enable Home Assistant API
 api:
@@ -71,5 +74,21 @@ climate:
       max_temperature: 40
       temperature_step: 0.1
     sensor: temp
-    horizontal_default: "right"
+    horizontal_position: "right"
+    mildewproof: true
+    custom_cool:
+      temperature: 28
+      swing: "horizontal"
+      fan_mode: "auto"
+    custom_heat:
+      temperature: 24
+      swing: "off"
+      fan_mode: "auto"
+    custom_dry:
+      temperature: 28
+      swing: "horizontal"
+      fan_mode: "low"
+    custom_fan_only:
+      swing: "off"
+      fan_mode: "low"
     
