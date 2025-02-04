@@ -163,10 +163,12 @@ void HitachiClimate::transmit_state() {
   // Store original state
   uint8_t pre_mode = get_mode_();
   uint8_t pre_fan = get_fan_();
+  uint8_t pre_swingh = get_swing_h_();
   bool pre_swingv = get_swing_v_();
   bool pre_power = get_power_();
 
   // Custom modes
+  uint8_t preset_swing_position = this->default_horizontal_direction_;
   if (this->custom_preset == "Cool") {
     this->mode = climate::CLIMATE_MODE_COOL;
     this->fan_mode = custom_cool_.fan_mode;               // climate::CLIMATE_FAN_AUTO;
@@ -186,6 +188,21 @@ void HitachiClimate::transmit_state() {
     this->mode = climate::CLIMATE_MODE_FAN_ONLY;
     this->fan_mode = custom_fan_only_.fan_mode;      // climate::CLIMATE_FAN_LOW;
     this->swing_mode = custom_fan_only_.swing_mode;  // climate::CLIMATE_SWING_OFF;
+  } else if (this->custom_preset == "_.Left_Max") {
+      this->swing_mode = climate::CLIMATE_SWING_OFF;
+      preset_swing_position = HITACHI_AC344_SWINGH_LEFT_MAX;
+  } else if (this->custom_preset == "_Left") {
+      this->swing_mode = climate::CLIMATE_SWING_OFF;
+      preset_swing_position = HITACHI_AC344_SWINGH_LEFT;
+  } else if (this->custom_preset == "_Middle") {
+      this->swing_mode = climate::CLIMATE_SWING_OFF;
+      preset_swing_position = HITACHI_AC344_SWINGH_MIDDLE;
+  } else if (this->custom_preset == "_Right") {
+      this->swing_mode = climate::CLIMATE_SWING_OFF;
+      preset_swing_position = HITACHI_AC344_SWINGH_RIGHT;
+  } else if (this->custom_preset == "_Right_Max") {
+      this->swing_mode = climate::CLIMATE_SWING_OFF;
+      preset_swing_position = HITACHI_AC344_SWINGH_RIGHT_MAX;
   }
   this->custom_preset = (std::string) "None";
 
@@ -241,7 +258,7 @@ void HitachiClimate::transmit_state() {
       break;
     case climate::CLIMATE_SWING_VERTICAL:
       set_swing_v_(true);
-      set_swing_h_(this->default_horizontal_direction_);
+      set_swing_h_(preset_swing_position);
       break;
     case climate::CLIMATE_SWING_HORIZONTAL:
       set_swing_v_(false);
@@ -249,7 +266,7 @@ void HitachiClimate::transmit_state() {
       break;
     case climate::CLIMATE_SWING_OFF:
       set_swing_v_(false);
-      set_swing_h_(this->default_horizontal_direction_);
+      set_swing_h_(preset_swing_position);
       break;
   }
 

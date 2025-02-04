@@ -92,7 +92,7 @@ class HitachiClimate : public climate_ir::ClimateIR {
                                climate::CLIMATE_FAN_HIGH, climate::CLIMATE_FAN_QUIET},
                               {climate::CLIMATE_SWING_OFF, climate::CLIMATE_SWING_BOTH, climate::CLIMATE_SWING_VERTICAL,
                                climate::CLIMATE_SWING_HORIZONTAL}) {
-    this->custom_presets_ = {"None", "Cool", "Dry", "Heat", "Fan_only"};
+    this->custom_presets_ = {"None", "Cool", "Dry", "Heat", "Fan_only", "_.Left_Max", "_Left", "_Middle", "_Right", "_Right_Max"};
   }
 
   void set_horizontal_default(uint8_t position) { this->default_horizontal_direction_ = position; }
