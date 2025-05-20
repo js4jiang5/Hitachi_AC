@@ -374,7 +374,7 @@ bool HitachiClimate::parse_swing_(const uint8_t remote_state[]) {
       GETBITS8(remote_state_[HITACHI_AC344_SWINGV_BYTE], HITACHI_AC344_SWINGV_OFFSET, HITACHI_AC344_SWINGV_SIZE);
   ESP_LOGV(TAG, "SwingV: %02X %02X", remote_state[HITACHI_AC344_SWINGV_BYTE], swing_modev);
 
-  if ((swing_modeh & 0x3) != 0) {
+  if ((swing_modeh & 0x7) != 0) {
     if (swing_modev) {
       this->swing_mode = climate::CLIMATE_SWING_VERTICAL;
     } else {
